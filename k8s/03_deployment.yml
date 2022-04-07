@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appapi
+  namespace: appapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appapi
+  template:
+    metadata:
+      labels:
+        app: appapi
+    spec:
+
+      containers:
+      - name: appapi
+        image: miquelgon/appapi:1.0.0
+        imagePullPolicy: Always
+        
+        env:
+        - name: APIHOST
+          value: "0.0.0.0"
+        - name: APIPORT
+          value: "8080"
+        - name: MYVAR
+          value: "hello from kubernetes appapi"
+        
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        
+        volumeMounts:
+        - name: cfgvol
+          mountPath: "/usr/src/appapi/conf"
+          readOnly: true
+      
+      volumes:
+      - name: cfgvol
+        configMap:
+          name: appapi-config
+

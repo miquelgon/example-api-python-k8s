@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appapi-config
+  namespace: appapi
+data:
+  appapi.properties: |
+    [section1]
+    cfgvar1=13
+    cfgvar2=value 22222 
