@@ -1,2 +1,2 @@
 Example REST API in python
-Docker build + deployment in Kubernetes, with Traefik Ingress
+Docker build + deployment in Kubernetes

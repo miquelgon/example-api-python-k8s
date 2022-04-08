@@ -4,6 +4,7 @@ metadata:
   name: appapi-svc
   namespace: appapi
 spec:
+  type: LoadBalancer
   ports:
   - name: http
     targetPort: 8080
